@@ -6,6 +6,8 @@
 package calculator;
 
 import java.text.ParseException;
+import java.util.Objects;
+import java.util.Scanner;
 
 /**
  *
@@ -13,159 +15,217 @@ import java.text.ParseException;
  */
 public class Calculator {
 
-    public double calculate(String userInput) throws ParseException, NumberFormatException {
-        if (Expression.isValid(userInput)) {
-            return eval(userInput);
-        } else {
-            throw new ParseException("Invalid expression", 0);
+    public static final String PATTERN_OF_NUMBER
+            = "([-]?[0-9]*\\.?[0-9]+"
+            + "|"
+            + "[-]?[0-9]+\\.?[0-9]*)";
+    public static final String PATTERN_OF_LOGICAL_OPERATOR
+            = "(<=|>=|==|!=|>|<)";
+    public static final String PATTERN_OF_HIGH_PRIORITY_BINARY_OPERATOR
+            = "(\\*|/)";
+    public static final String PATTERN_OF_LOW_PRIORITY_BINARY_OPERATOR
+            = "(\\+|-)";
+    public static final String PATTERN_OF_LOGICAL_EXPRESSION
+            = "("
+            + PATTERN_OF_NUMBER
+            + PATTERN_OF_LOGICAL_OPERATOR
+            + PATTERN_OF_NUMBER
+            + ")";
+    public static final String PATTERN_OF_TERNARY_EXPRESSION
+            = "("
+            + PATTERN_OF_NUMBER
+            + "\\?"
+            + PATTERN_OF_NUMBER
+            + ":"
+            + PATTERN_OF_NUMBER
+            + ")";
+    public static final String PATTERN_OF_HIGH_PRIORITY_BINARY_EXPRESSION
+            = "("
+            + PATTERN_OF_NUMBER
+            + PATTERN_OF_HIGH_PRIORITY_BINARY_OPERATOR
+            + PATTERN_OF_NUMBER
+            + ")";
+    public static final String PATTERN_OF_LOW_PRIORITY_BINARY_EXPRESSION
+            = "("
+            + PATTERN_OF_NUMBER
+            + PATTERN_OF_LOW_PRIORITY_BINARY_OPERATOR
+            + PATTERN_OF_NUMBER
+            + ")";
+    public static final String PATTERN_OF_SIMPLE_PARENTHESES
+            = "("
+            + "\\("
+            + "[^\\(^\\)]*"
+            + PATTERN_OF_NUMBER
+            + "[^\\(^\\)]*"
+            + "\\)"
+            + ")";
 
+    public static String evaluateExpression(String expression) throws ParseException {
+        String found = getExpressionInParentheses(expression);
+        while (found != null) {
+            String simpleExpression = found.substring(1, found.length() - 1);
+            expression = expression.replace(
+                    found,
+                    evaluateSimpleExpression(simpleExpression));
+            found = getExpressionInParentheses(expression);
+        }
+        return evaluateSimpleExpression(expression);
+    }
+
+    public static String getExpressionInParentheses(String expression) {
+        Scanner sc = new Scanner(expression);
+        String found = sc.findInLine(PATTERN_OF_SIMPLE_PARENTHESES);
+        sc.close();
+        return found;
+    }
+
+    public static String evaluateSimpleExpression(String simpleExpression) throws ParseException {
+        return evaluateAllLowPriorityBinaryInSimpleExpression(simpleExpression);
+    }
+
+    public static String evaluateAllLogicInSimpleExpression(String simpleExpression) throws ParseException {
+
+        while (true) {
+            Scanner sc = new Scanner(simpleExpression);
+            String found = sc.findInLine(PATTERN_OF_LOGICAL_EXPRESSION);
+            sc.close();
+            if (found == null) {
+                break;
+            }
+            simpleExpression = simpleExpression.replace(
+                    found,
+                    String.valueOf(calculateSimpleLogicalExpression(found))
+            );
+        }
+        System.out.println("[" + simpleExpression + "]");
+        return simpleExpression;
+    }
+
+    public static String evaluateAllTernaryInSimpleExpression(String simpleExpression) throws ParseException {
+        simpleExpression = evaluateAllLogicInSimpleExpression(simpleExpression);
+        while (true) {
+            Scanner sc = new Scanner(simpleExpression);
+            String found = sc.findInLine(PATTERN_OF_TERNARY_EXPRESSION);
+            sc.close();
+            if (found == null) {
+                break;
+            }
+            simpleExpression = simpleExpression.replace(
+                    found,
+                    String.valueOf(calculateSimpleTernaryExpression(found))
+            );
+        }
+        System.out.println("[" + simpleExpression + "]");
+        return simpleExpression;
+    }
+
+    public static String evaluateAllHighPriorityBinaryInSimpleExpression(String simpleExpression) throws ParseException {
+        simpleExpression = evaluateAllTernaryInSimpleExpression(simpleExpression);
+        while (true) {
+            Scanner sc = new Scanner(simpleExpression);
+            String found = sc.findInLine(PATTERN_OF_HIGH_PRIORITY_BINARY_EXPRESSION);
+            sc.close();
+            if (found == null) {
+                break;
+            }
+            simpleExpression = simpleExpression.replace(
+                    found,
+                    String.valueOf(calculateSimpleHighPriorityBinaryExpression(found))
+            );
+        }
+        System.out.println("[" + simpleExpression + "]");
+        return simpleExpression;
+    }
+
+    public static String evaluateAllLowPriorityBinaryInSimpleExpression(String simpleExpression) throws ParseException {
+        simpleExpression = evaluateAllHighPriorityBinaryInSimpleExpression(simpleExpression);
+        while (true) {
+            Scanner sc = new Scanner(simpleExpression);
+            String found = sc.findInLine(PATTERN_OF_LOW_PRIORITY_BINARY_EXPRESSION);
+            sc.close();
+            if (found == null) {
+                break;
+            }
+            simpleExpression = simpleExpression.replace(
+                    found,
+                    String.valueOf(calculateSimpleLowPriorityBinaryExpression(found))
+            );
+        }
+        System.out.println("[" + simpleExpression + "]");
+        return simpleExpression;
+    }
+
+    public static double calculateSimpleLogicalExpression(String expression) throws ParseException {
+        Scanner sc = new Scanner(expression);
+        Double leftOperand = Double.valueOf(sc.findInLine(PATTERN_OF_NUMBER));
+        String operator = sc.findInLine(PATTERN_OF_LOGICAL_OPERATOR);
+        Double rightOperand = Double.valueOf(sc.findInLine(PATTERN_OF_NUMBER));
+        sc.close();
+
+        System.out.println("[" + leftOperand + "]" + "[" + operator + "]" + "[" + rightOperand + "]");
+        switch (operator) {
+            case ">=":
+                return leftOperand >= rightOperand ? 1.0 : 0.0;
+            case "<=":
+                return leftOperand <= rightOperand ? 1.0 : 0.0;
+            case "==":
+                return Objects.equals(leftOperand, rightOperand) ? 1.0 : 0.0;
+            case "!=":
+                return !Objects.equals(leftOperand, rightOperand) ? 1.0 : 0.0;
+            case "<":
+                return leftOperand < rightOperand ? 1.0 : 0.0;
+            case ">":
+                return leftOperand > rightOperand ? 1.0 : 0.0;
+            default:
+                throw new ParseException("Invalid logical expression", 0);
         }
     }
 
+    public static double calculateSimpleTernaryExpression(String expression) throws NumberFormatException {
+        Scanner sc = new Scanner(expression);
+        Double logicOperand = Double.valueOf(sc.findInLine(PATTERN_OF_NUMBER));
+        sc.findInLine("\\?");
+        Double leftOperand = Double.valueOf(sc.findInLine(PATTERN_OF_NUMBER));
+        sc.findInLine(":");
+        Double rightOperand = Double.valueOf(sc.findInLine(PATTERN_OF_NUMBER));
+        sc.close();
+        System.out.println("[" + logicOperand + "]" + "[" + leftOperand + "]" + "[" + rightOperand + "]");
+        return (logicOperand > 0) ? leftOperand : rightOperand;
 
-    public double eval(String userInput) throws ParseException, NumberFormatException {
-
-        Expression exprs = Expression.stringToExpression(userInput);
-//      Check for Simple Expressions.
-//      In Simple case <value> is calculated <value> = <unar>*Double(<expr>)
-
-        System.out.println(exprs);
-        for (Value v : exprs) {
-            if (Expression.isFloatNumber(v.expr)) {
-                int unar = v.unarOperator ? (-1) : 1;
-                v.value = unar * Double.parseDouble(v.expr);
-                v.expr = String.valueOf(v.value);
-                v.unarOperator = false;
-                v.isSimple = true;
-            }
-        }
-
-        for (Value v : exprs) {
-            if (Expression.isSimpleLogicalExpression(v.expr)) {
-                int unar = v.unarOperator ? (-1) : 1;
-                v.value = unar * evalSimpleLogicalExpression(v.expr);
-                v.expr = String.valueOf(v.value);
-                v.unarOperator = false;
-                v.isSimple = true;
-            }
-        }
-
-        for (Value v : exprs) {
-            if (Expression.isSimpleTernaryExpression(v.expr)) {
-                int unar = v.unarOperator ? (-1) : 1;
-                v.value = unar * evalSimpleTernaryExpression(v.expr);
-                v.expr = String.valueOf(v.value);
-                v.unarOperator = false;
-                v.isSimple = true;
-            }
-        }
-
-        for (Value v : exprs) {
-            if (v.isSimple == false) {
-                int unar = v.unarOperator ? (-1) : 1;
-                v.value = unar * eval(Expression.removeExternalParentheses(v.expr));
-            }
-        }
-
-        System.out.println("Before binary operations :\n" + exprs);
-
-        return evalSimpleBinaryExpression(exprs);
     }
 
-    /**
-     * *
-     *
-     * @param simpleExpression represent a Simple Expression (without
-     * parentheses). String like "1*2+3" represented as ["1*","2+","3"]
-     * @return calculation of the Simple Expression.
-     */
-    double evalSimpleBinaryExpression(Expression simpleExpression) {
-        int bound = simpleExpression.size();
-
-//      Calculate all operators like "*" and "/"
-        for (int i = 0; i < bound; i++) {
-            Value v = simpleExpression.get(i);
-            if (v.binaryOperator == '*' || v.binaryOperator == '/') {
-                Value next = simpleExpression.get(i + 1);
-                if (v.binaryOperator == '*') {
-                    v.value *= next.value;
-                } else {
-                    if (next.value == 0) {
-                        throw new ArithmeticException("Division by zero");
-                    }
-                    v.value /= next.value;
-                }
-                v.binaryOperator = next.binaryOperator;
-                simpleExpression.remove(i + 1);
-                bound--;
-                i--;
-            }
+    public static double calculateSimpleHighPriorityBinaryExpression(String expression) throws ParseException {
+        Scanner sc = new Scanner(expression);
+        Double leftOperand = Double.valueOf(sc.findInLine(PATTERN_OF_NUMBER));
+        String operator = sc.findInLine(PATTERN_OF_HIGH_PRIORITY_BINARY_OPERATOR);
+        Double rightOperand = Double.valueOf(sc.findInLine(PATTERN_OF_NUMBER));
+        sc.close();
+        System.out.println("[" + leftOperand + "]" + "[" + operator + "]" + "[" + rightOperand + "]");
+        switch (operator) {
+            case "/":
+                return leftOperand / rightOperand;
+            case "*":
+                return leftOperand * rightOperand;
+            default:
+                throw new ParseException("Invalid logical expression", 0);
         }
-//      Calculate all perations like "+" and "-"
-        for (int i = 0; i < bound; i++) {
-            Value v = simpleExpression.get(i);
-            if (v.binaryOperator == '+' || v.binaryOperator == '-') {
-                Value next = simpleExpression.get(i + 1);
-                if (v.binaryOperator == '+') {
-                    v.value += next.value;
-                } else {
-                    v.value -= next.value;
-                }
-                v.binaryOperator = next.binaryOperator;
-                simpleExpression.remove(i + 1);
-                bound--;
-                i--;
-            }
-        }
-        System.out.println(simpleExpression.get(0).value);
-        return simpleExpression.get(0).value;
     }
 
-    static double evalSimpleTernaryExpression(String input) throws ParseException {
-
-        int positionOfQuestionSign = input.indexOf('?');
-        int positionOfColonSign = input.indexOf(':');
-        String logic = input.substring(0, positionOfQuestionSign);
-        String trueReturn = input.substring(positionOfQuestionSign + 1, positionOfColonSign);
-        String falseReturn = input.substring(positionOfColonSign + 1, input.length());
-        return (evalSimpleLogicalExpression(logic) > 0)
-                ? Double.valueOf(trueReturn)
-                : Double.valueOf(falseReturn);
-    }
-
-    static double evalSimpleLogicalExpression(String input) throws ParseException {
-        String[] operands;
-        Double left, right;
-        if (input.indexOf("<=") > 0) {
-            operands = input.split("<=");
-            left = Double.valueOf(operands[0]);
-            right = Double.valueOf(operands[1]);
-            return (left <= right) ? 1 : 0;
-
-        } else if (input.indexOf(">=") > 0) {
-            operands = input.split(">=");
-            left = Double.valueOf(operands[0]);
-            right = Double.valueOf(operands[1]);
-            return (left >= right) ? 1 : 0;
-        } else if (input.indexOf("=") > 0) {
-            operands = input.split("=");
-            left = Double.valueOf(operands[0]);
-            right = Double.valueOf(operands[1]);
-            return (left == right) ? 1 : 0;
-        } else if (input.indexOf(">") > 0) {
-            operands = input.split(">");
-            left = Double.valueOf(operands[0]);
-            right = Double.valueOf(operands[1]);
-            return (left > right) ? 1 : 0;
-        } else if (input.indexOf("<") > 0) {
-            operands = input.split("<");
-            left = Double.valueOf(operands[0]);
-            right = Double.valueOf(operands[1]);
-            return (left < right) ? 1 : 0;
-        } else {
-            throw new ParseException("Invalid logical expression", 0);
+    public static double calculateSimpleLowPriorityBinaryExpression(String expression) throws ParseException {
+        Scanner sc = new Scanner(expression);
+        Double leftOperand = Double.valueOf(sc.findInLine(PATTERN_OF_NUMBER));
+        String operator = sc.findInLine(PATTERN_OF_LOW_PRIORITY_BINARY_OPERATOR);
+        Double rightOperand = Double.valueOf(sc.findInLine(PATTERN_OF_NUMBER));
+        sc.close();
+        System.out.println("[" + leftOperand + "]" + "[" + operator + "]" + "[" + rightOperand + "]");
+        switch (operator) {
+            case "+":
+                return leftOperand + rightOperand;
+            case "-":
+                return leftOperand - rightOperand;
+            default:
+                throw new ParseException("Invalid logical expression", 0);
         }
-
     }
 
 }
