@@ -42,7 +42,7 @@ public class Expression extends ArrayList<Value> {
                 postStatus = "operator";
                 uo = false;
                 posStartOfValue = i + 1;
-            } else if ("0123456789.><=?".contains(String.valueOf(c))) {
+            } else if ("0123456789.<>=?:".contains(String.valueOf(c))) {
                 if (i == (inputInChars.length - 1)) {
                     expr = input.substring(posStartOfValue, i + 1);
                     value = new Value();
@@ -66,7 +66,18 @@ public class Expression extends ArrayList<Value> {
                     result.add(value);
                 }
                 postStatus = "value";
-            } else {
+            } //            else if("<>=?:".contains(String.valueOf(c))){
+            //                expr = input.substring(posStartOfValue, i);
+            //                value = new Value();
+            //                value.expr = expr;
+            //                value.unarOperator = uo;
+            //                value.logicalOperator = String.valueOf(c);
+            //                result.add(value);
+            //                postStatus = "operator";
+            //                uo = false;
+            //                posStartOfValue = i + 1;
+            //            }
+            else {
                 throw new ParseException("Invalid Expression", i);
             }
         }
@@ -92,19 +103,28 @@ public class Expression extends ArrayList<Value> {
     }
 
     public static boolean isFloatNumber(String expr) {
-        return Pattern.matches("^[-]?(([0-9]*[.]?[0-9]+)|([0-9]+[.]?[0-9]*))$", expr);
+        return Pattern.matches(
+                "^[-]?(([0-9]*[.]?[0-9]+)"
+                + "|"
+                + "([0-9]+[.]?[0-9]*))$", expr);
     }
 
     public static boolean isSimpleTernaryExpression(String expr) {
-        return Pattern.matches("^(([0-9]*[.]?[0-9]+)|([0-9]+[.]?[0-9]*))[?]"
-                + "[-]?(([0-9]*[.]?[0-9]+)|([0-9]+[.]?[0-9]*))[:]"
+        return Pattern.matches(
+                "^[-]?(([0-9]*[.]?[0-9]+)|([0-9]+[.]?[0-9]*))"
+                + "(<=|>=|=|>|<)"
+                + "[-]?(([0-9]*[.]?[0-9]+)|([0-9]+[.]?[0-9]*))"
+                + "[?]"
+                + "[-]?(([0-9]*[.]?[0-9]+)|([0-9]+[.]?[0-9]*))"
+                + "[:]"
                 + "[-]?(([0-9]*[.]?[0-9]+)|([0-9]+[.]?[0-9]*))$", expr);
     }
 
     public static boolean isSimpleLogicalExpression(String expr) {
-        return Pattern.matches("^[-]?(([0-9]*[.]?[0-9]+)|([0-9]+[.]?[0-9]*))"
+        return Pattern.matches(
+                "^[-]?(([0-9]*[.]?[0-9]+)|([0-9]+[.]?[0-9]*))"
                 + "(<=|>=|=|>|<)"
-                + "[-]?(([0-9]*[.]?[0-9]+)|([0-9]+[.]?[0-9]*))", expr);
+                + "[-]?(([0-9]*[.]?[0-9]+)|([0-9]+[.]?[0-9]*))$", expr);
     }
 
     static String removeExternalParentheses(String expr) {
@@ -132,9 +152,42 @@ public class Expression extends ArrayList<Value> {
     }
 
     static boolean isValidPointers(String input) {
-        boolean error = Pattern.matches("(^(.)*\\.[0-9]*\\.(.)*$)"
+        boolean isError = Pattern.matches("(^(.)*\\.[0-9]*\\.(.)*$)"
                 + "|(^(.)*[^0-9]+\\.[^0-9]+(.)*$)"
                 + "|(^\\.$)", input);
-        return !error;
+        return !isError;
     }
+
+    static boolean isCorrectSymbols(String input) {
+        boolean isCorrect = Pattern.matches("^["
+                + "[0-9]+"
+                + "\\("
+                + "\\)"
+                + "\\+"
+                + "\\-"
+                + "\\*"
+                + "\\/"
+                + "\\>"
+                + "\\<"
+                + "\\="
+                + "\\?"
+                + "\\:"
+                + "\\."
+                + "]+$", input);
+        return isCorrect;
+    }
+
+    public static boolean isValid(String expression) throws ParseException, NumberFormatException {
+        if (Expression.isCorrectSymbols(expression) == false) {
+            throw new ParseException("Invalid symbol", 0);
+        }
+        if (Expression.isValidNumberOfParentheses(expression) == false) {
+            throw new ParseException("Number of parantheses is not correct", 0);
+        }
+        if (Expression.isValidPointers(expression) == false) {
+            throw new ParseException("Number of pointers is not correct", 0);
+        }
+        return true;
+    }
+
 }

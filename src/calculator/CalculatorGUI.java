@@ -51,14 +51,17 @@ public class CalculatorGUI extends javax.swing.JFrame {
         jButtonMinus = new javax.swing.JButton();
         jButtonMultiply = new javax.swing.JButton();
         jButtonDivide = new javax.swing.JButton();
-        jButtonEquals = new javax.swing.JButton();
+        jButtonCalculate = new javax.swing.JButton();
         jButtonOpenParanthese = new javax.swing.JButton();
         jButtonCloseParanthese = new javax.swing.JButton();
-        jButtonCloseClearAll = new javax.swing.JButton();
-        jButtonClear1 = new javax.swing.JButton();
-        jButtonClear2 = new javax.swing.JButton();
-        jButtonClear3 = new javax.swing.JButton();
-        jButtonClear4 = new javax.swing.JButton();
+        jButtonClearAll = new javax.swing.JButton();
+        jButtonEquals = new javax.swing.JButton();
+        jButtonGreater = new javax.swing.JButton();
+        jButtonLower = new javax.swing.JButton();
+        jButtonColon = new javax.swing.JButton();
+        jButtonQuestion = new javax.swing.JButton();
+        jButtonGreaterOrEquals = new javax.swing.JButton();
+        jButtonLowerOrEquals = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SimpleCalculator");
@@ -228,12 +231,12 @@ public class CalculatorGUI extends javax.swing.JFrame {
             }
         });
 
-        jButtonEquals.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButtonEquals.setText("calc");
-        jButtonEquals.setAlignmentY(0.0F);
-        jButtonEquals.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCalculate.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButtonCalculate.setText("calc");
+        jButtonCalculate.setAlignmentY(0.0F);
+        jButtonCalculate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEqualsActionPerformed(evt);
+                jButtonCalculateActionPerformed(evt);
             }
         });
 
@@ -255,47 +258,74 @@ public class CalculatorGUI extends javax.swing.JFrame {
             }
         });
 
-        jButtonCloseClearAll.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButtonCloseClearAll.setText("clear");
-        jButtonCloseClearAll.addActionListener(new java.awt.event.ActionListener() {
+        jButtonClearAll.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButtonClearAll.setText("clear");
+        jButtonClearAll.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCloseClearAllActionPerformed(evt);
+                jButtonClearAllActionPerformed(evt);
             }
         });
 
-        jButtonClear1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButtonClear1.setText("?");
-        jButtonClear1.setAlignmentY(0.0F);
-        jButtonClear1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonEquals.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButtonEquals.setText("==");
+        jButtonEquals.setAlignmentY(0.0F);
+        jButtonEquals.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonClear1ActionPerformed(evt);
+                jButtonEqualsActionPerformed(evt);
             }
         });
 
-        jButtonClear2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButtonClear2.setText(">");
-        jButtonClear2.setAlignmentY(0.0F);
-        jButtonClear2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonGreater.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButtonGreater.setText(">");
+        jButtonGreater.setAlignmentY(0.0F);
+        jButtonGreater.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonClear2ActionPerformed(evt);
+                jButtonGreaterActionPerformed(evt);
             }
         });
 
-        jButtonClear3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButtonClear3.setText("<");
-        jButtonClear3.setAlignmentY(0.0F);
-        jButtonClear3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLower.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButtonLower.setText("<");
+        jButtonLower.setAlignmentY(0.0F);
+        jButtonLower.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonClear3ActionPerformed(evt);
+                jButtonLowerActionPerformed(evt);
             }
         });
 
-        jButtonClear4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButtonClear4.setText(":");
-        jButtonClear4.setAlignmentY(0.0F);
-        jButtonClear4.addActionListener(new java.awt.event.ActionListener() {
+        jButtonColon.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButtonColon.setText(":");
+        jButtonColon.setAlignmentY(0.0F);
+        jButtonColon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonClear4ActionPerformed(evt);
+                jButtonColonActionPerformed(evt);
+            }
+        });
+
+        jButtonQuestion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButtonQuestion.setText("?");
+        jButtonQuestion.setAlignmentY(0.0F);
+        jButtonQuestion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonQuestionActionPerformed(evt);
+            }
+        });
+
+        jButtonGreaterOrEquals.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButtonGreaterOrEquals.setText(">=");
+        jButtonGreaterOrEquals.setAlignmentY(0.0F);
+        jButtonGreaterOrEquals.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGreaterOrEqualsActionPerformed(evt);
+            }
+        });
+
+        jButtonLowerOrEquals.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButtonLowerOrEquals.setText("<=");
+        jButtonLowerOrEquals.setAlignmentY(0.0F);
+        jButtonLowerOrEquals.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLowerOrEqualsActionPerformed(evt);
             }
         });
 
@@ -309,9 +339,14 @@ public class CalculatorGUI extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonCloseClearAll, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonQuestion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonGreaterOrEquals, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonLowerOrEquals, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonClearAll, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButtonClear1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButtonEquals, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButtonClear, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -319,9 +354,9 @@ public class CalculatorGUI extends javax.swing.JFrame {
                                 .addComponent(jButtonOpenParanthese, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButtonClear2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButtonClear3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButtonClear4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jButtonGreater, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButtonLower, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButtonColon, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(86, 86, 86)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -340,7 +375,7 @@ public class CalculatorGUI extends javax.swing.JFrame {
                             .addComponent(jButtonNine, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonSix, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonThree, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonEquals, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButtonCalculate, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonPlus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -364,15 +399,22 @@ public class CalculatorGUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonSeven, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonEight, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonNine, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonClear1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButtonNine, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonClear2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonGreater, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonClear3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonLower, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonClear4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButtonClear, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonColon, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonClear, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonEquals, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonGreaterOrEquals, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonLowerOrEquals, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonPlus, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -381,7 +423,7 @@ public class CalculatorGUI extends javax.swing.JFrame {
                             .addComponent(jButtonFour, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonFive, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonSix, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonCloseClearAll, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButtonClearAll, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonMultiply, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -394,7 +436,7 @@ public class CalculatorGUI extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jButtonZero, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButtonPoint, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButtonEquals, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButtonCalculate, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButtonDivide, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButtonOpenParanthese, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -412,7 +454,8 @@ public class CalculatorGUI extends javax.swing.JFrame {
     }
 
     private void jTextFieldInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldInputActionPerformed
-        // TODO add your handling code here:
+        input.setLength(0);
+        input.append(jTextFieldInput.getText());
     }//GEN-LAST:event_jTextFieldInputActionPerformed
 
     private void jButtonSevenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSevenActionPerformed
@@ -467,9 +510,9 @@ public class CalculatorGUI extends javax.swing.JFrame {
         appendToInput("/");
     }//GEN-LAST:event_jButtonDivideActionPerformed
 
-    private void jButtonEqualsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEqualsActionPerformed
+    private void jButtonCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCalculateActionPerformed
         try {
-            result = String.valueOf(calc.calculate(input.toString()));
+            result = String.valueOf(calc.calculate(jTextFieldInput.getText()));
         } catch (ParseException pE) {
             result = pE.getMessage();
         } catch (ArithmeticException aE) {
@@ -481,7 +524,7 @@ public class CalculatorGUI extends javax.swing.JFrame {
         }
         jTextFieldResult.setText(result);
         System.out.println("\n");
-    }//GEN-LAST:event_jButtonEqualsActionPerformed
+    }//GEN-LAST:event_jButtonCalculateActionPerformed
 
     private void jButtonPointActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPointActionPerformed
         appendToInput(".");
@@ -510,26 +553,36 @@ public class CalculatorGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldResultActionPerformed
 
-    private void jButtonCloseClearAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCloseClearAllActionPerformed
+    private void jButtonClearAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearAllActionPerformed
         input.setLength(0);
         jTextFieldInput.setText(input.toString());
-    }//GEN-LAST:event_jButtonCloseClearAllActionPerformed
+    }//GEN-LAST:event_jButtonClearAllActionPerformed
 
-    private void jButtonClear1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClear1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonClear1ActionPerformed
+    private void jButtonEqualsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEqualsActionPerformed
+        appendToInput("=");    }//GEN-LAST:event_jButtonEqualsActionPerformed
 
-    private void jButtonClear2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClear2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonClear2ActionPerformed
+    private void jButtonGreaterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGreaterActionPerformed
+        appendToInput(">");    }//GEN-LAST:event_jButtonGreaterActionPerformed
 
-    private void jButtonClear3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClear3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonClear3ActionPerformed
+    private void jButtonLowerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLowerActionPerformed
+        appendToInput("<");
+    }//GEN-LAST:event_jButtonLowerActionPerformed
 
-    private void jButtonClear4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClear4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonClear4ActionPerformed
+    private void jButtonColonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonColonActionPerformed
+        appendToInput(":");
+    }//GEN-LAST:event_jButtonColonActionPerformed
+
+    private void jButtonQuestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonQuestionActionPerformed
+        appendToInput("?");
+    }//GEN-LAST:event_jButtonQuestionActionPerformed
+
+    private void jButtonGreaterOrEqualsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGreaterOrEqualsActionPerformed
+        appendToInput(">=");
+    }//GEN-LAST:event_jButtonGreaterOrEqualsActionPerformed
+
+    private void jButtonLowerOrEqualsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLowerOrEqualsActionPerformed
+        appendToInput("<=");
+    }//GEN-LAST:event_jButtonLowerOrEqualsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -567,18 +620,20 @@ public class CalculatorGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonCalculate;
     private javax.swing.JButton jButtonClear;
-    private javax.swing.JButton jButtonClear1;
-    private javax.swing.JButton jButtonClear2;
-    private javax.swing.JButton jButtonClear3;
-    private javax.swing.JButton jButtonClear4;
-    private javax.swing.JButton jButtonCloseClearAll;
+    private javax.swing.JButton jButtonClearAll;
     private javax.swing.JButton jButtonCloseParanthese;
+    private javax.swing.JButton jButtonColon;
     private javax.swing.JButton jButtonDivide;
     private javax.swing.JButton jButtonEight;
     private javax.swing.JButton jButtonEquals;
     private javax.swing.JButton jButtonFive;
     private javax.swing.JButton jButtonFour;
+    private javax.swing.JButton jButtonGreater;
+    private javax.swing.JButton jButtonGreaterOrEquals;
+    private javax.swing.JButton jButtonLower;
+    private javax.swing.JButton jButtonLowerOrEquals;
     private javax.swing.JButton jButtonMinus;
     private javax.swing.JButton jButtonMultiply;
     private javax.swing.JButton jButtonNine;
@@ -586,6 +641,7 @@ public class CalculatorGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButtonOpenParanthese;
     private javax.swing.JButton jButtonPlus;
     private javax.swing.JButton jButtonPoint;
+    private javax.swing.JButton jButtonQuestion;
     private javax.swing.JButton jButtonSeven;
     private javax.swing.JButton jButtonSix;
     private javax.swing.JButton jButtonThree;

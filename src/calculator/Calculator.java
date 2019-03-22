@@ -14,20 +14,22 @@ import java.text.ParseException;
 public class Calculator {
 
     public double calculate(String userInput) throws ParseException, NumberFormatException {
-        if (Expression.isValidNumberOfParentheses(userInput) == false) {
-            throw new ParseException("Number of parantheses is not correct", 0);
+        if (Expression.isValid(userInput)) {
+            return eval(userInput);
+        } else {
+            throw new ParseException("Invalid expression", 0);
+
         }
-        if (Expression.isValidPointers(userInput) == false) {
-            throw new ParseException("Number of pointers is not correct", 0);
-        }
-        return eval(userInput);
     }
+
 
     public double eval(String userInput) throws ParseException, NumberFormatException {
 
         Expression exprs = Expression.stringToExpression(userInput);
 //      Check for Simple Expressions.
 //      In Simple case <value> is calculated <value> = <unar>*Double(<expr>)
+
+        System.out.println(exprs);
         for (Value v : exprs) {
             if (Expression.isFloatNumber(v.expr)) {
                 int unar = v.unarOperator ? (-1) : 1;
@@ -57,8 +59,6 @@ public class Calculator {
                 v.isSimple = true;
             }
         }
-
-        System.out.println(exprs);
 
         for (Value v : exprs) {
             if (v.isSimple == false) {
@@ -128,7 +128,7 @@ public class Calculator {
         String logic = input.substring(0, positionOfQuestionSign);
         String trueReturn = input.substring(positionOfQuestionSign + 1, positionOfColonSign);
         String falseReturn = input.substring(positionOfColonSign + 1, input.length());
-        return (Double.valueOf(logic) > 0)
+        return (evalSimpleLogicalExpression(logic) > 0)
                 ? Double.valueOf(trueReturn)
                 : Double.valueOf(falseReturn);
     }

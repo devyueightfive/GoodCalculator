@@ -14,20 +14,23 @@ class Value {
     Double value = null;
     boolean unarOperator = false;
     char binaryOperator = ' ';
+    String logicalOperator = "";
     String expr = "";
     boolean isSimple = false;
 
     public String toString() {
         String unar = "";
-        String operator;
+        String bOperator = "";
+        String lOperator = "";
         if (this.unarOperator) {
             unar = "(-)";
         }
-        if (binaryOperator == ' ') {
-            operator = "";
-        } else {
-            operator = String.valueOf(this.binaryOperator);
+        if (binaryOperator != ' ') {
+            bOperator = String.valueOf(this.binaryOperator);
         }
-        return unar + this.expr + operator + "[" + isSimple + "]";
+        if (logicalOperator.equals("") == false) {
+            lOperator = String.valueOf(this.binaryOperator);
+        }
+        return unar + this.expr + bOperator + lOperator + "[" + isSimple + "]";
     }
 }
