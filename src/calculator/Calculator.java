@@ -10,6 +10,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 /**
+ * Text calculator.
  *
  * @author yuri
  */
@@ -60,9 +61,20 @@ public class Calculator {
             + "\\)"
             + ")";
 
+    /**
+     * Calculate all available expressions in given input.
+     *
+     *
+     * @param expression input
+     * @return string representation of evaluation
+     * @throws ParseException
+     */
+
     public static String evaluateExpression(String expression) throws ParseException {
         String found = getExpressionInParentheses(expression);
+        //while we find simple expressions in parentheses
         while (found != null) {
+            //remove outside parentheses 
             String simpleExpression = found.substring(1, found.length() - 1);
             expression = expression.replace(
                     found,
@@ -72,6 +84,12 @@ public class Calculator {
         return evaluateSimpleExpression(expression);
     }
 
+    /**
+     * Find next simple parentheses (no parentheses inside).
+     *
+     * @param expression any expression
+     * @return simple expression with parentheses
+     */
     public static String getExpressionInParentheses(String expression) {
         Scanner sc = new Scanner(expression);
         String found = sc.findInLine(PATTERN_OF_SIMPLE_PARENTHESES);
@@ -79,6 +97,13 @@ public class Calculator {
         return found;
     }
 
+    /**
+     * Calculate simple expression (without parentheses).
+     *
+     * @param simpleExpression expression without parentheses
+     * @return return string representation
+     * @throws ParseException
+     */
     public static String evaluateSimpleExpression(String simpleExpression)
             throws ParseException {
         return evaluateAllLowPriorityBinaryInSimpleExpression(simpleExpression);
@@ -160,6 +185,16 @@ public class Calculator {
         return simpleExpression;
     }
 
+    /**
+     * Calculate comparison operations 
+     * within simple comparison expression (without parentheses) 
+     * 
+     * @param expression
+     *          simple logical expression
+     * @return
+     * @throws ParseException 
+     */
+    
     public static double calculateSimpleLogicalExpression(String expression)
             throws ParseException {
         Scanner sc = new Scanner(expression);
@@ -186,7 +221,14 @@ public class Calculator {
                 throw new ParseException("Invalid logical expression", 0);
         }
     }
-
+    /**
+     * Calculate all ternary operations 
+     * within simple expression(without parentheses).
+     * 
+     * @param expression
+     * @return
+     * @throws NumberFormatException 
+     */
     public static double calculateSimpleTernaryExpression(String expression)
             throws NumberFormatException {
         Scanner sc = new Scanner(expression);
@@ -200,6 +242,16 @@ public class Calculator {
         return (logicOperand > 0) ? leftOperand : rightOperand;
 
     }
+
+    /**
+     * Calculate all binary operations with high priority (multiply and
+     * division) within simple expression (without parentheses).
+     *
+     * @param expression
+     * @return
+     * @throws ParseException
+     * @throws ArithmeticException
+     */
 
     public static double calculateSimpleHighPriorityBinaryExpression(String expression)
             throws ParseException, ArithmeticException {
@@ -222,6 +274,15 @@ public class Calculator {
                 throw new ParseException("Invalid logical expression", 0);
         }
     }
+
+    /**
+     * Calculate all binary operations with low priority (plus and minus) within
+     * simple expression (without parentheses).
+     *
+     * @param expression
+     * @return
+     * @throws ParseException
+     */
 
     public static double calculateSimpleLowPriorityBinaryExpression(String expression)
             throws ParseException {
