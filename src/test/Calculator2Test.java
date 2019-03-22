@@ -6,12 +6,10 @@
 package test;
 
 import java.util.ArrayList;
-import calculator.Calculator;
 import static calculator.Calculator.calculateSimpleHighPriorityBinaryExpression;
 import static calculator.Calculator.calculateSimpleLogicalExpression;
 import static calculator.Calculator.calculateSimpleTernaryExpression;
 import static calculator.Calculator.evaluateAllHighPriorityBinaryInSimpleExpression;
-import java.util.Scanner;
 import static calculator.Calculator.evaluateAllLogicInSimpleExpression;
 import static calculator.Calculator.evaluateAllLowPriorityBinaryInSimpleExpression;
 import static calculator.Calculator.evaluateAllTernaryInSimpleExpression;

@@ -11,27 +11,62 @@ import java.util.Scanner;
 
 /**
  * Text calculator.
+ * Evaluate expression with selected operations:
+ *  comparison (<,>,<=,>=,==,!=),
+ *  ternary (logic?trueReturn:falseReturn),
+ *  binary operators (+,-,*,/).
+ * Expression can consist of parentheses.
+ * 
  *
  * @author yuri
  */
 public class Calculator {
+    /**
+     * Pattern represents a float number like 0.123 .
+     */
 
     public static final String PATTERN_OF_NUMBER
             = "([-]?[0-9]*\\.?[0-9]+"
             + "|"
             + "[-]?[0-9]+\\.?[0-9]*)";
+    
+    
+    /**
+     * Pattern represents comparison operators.
+     */
     public static final String PATTERN_OF_LOGICAL_OPERATOR
+            = "(&|\\|)";
+    
+    /**
+     * Pattern represents comparison operators.
+     */
+    public static final String PATTERN_OF_COMPARISON_OPERATOR
             = "(<=|>=|==|!=|>|<)";
+    
+    /**
+     * Pattern represents two binary operators: multiply and division.
+     */
     public static final String PATTERN_OF_HIGH_PRIORITY_BINARY_OPERATOR
             = "(\\*|/)";
+    
+    /**
+     * Pattern represents two binary operators: plus and minus.
+     */
     public static final String PATTERN_OF_LOW_PRIORITY_BINARY_OPERATOR
             = "(\\+|-)";
+    
+    /**
+     * Pattern represents simple comparison expression like 1>2 .
+     */
     public static final String PATTERN_OF_LOGICAL_EXPRESSION
             = "("
             + PATTERN_OF_NUMBER
-            + PATTERN_OF_LOGICAL_OPERATOR
+            + PATTERN_OF_COMPARISON_OPERATOR
             + PATTERN_OF_NUMBER
             + ")";
+    /**
+     * Pattern represents simple ternary expression like 1?2:3
+     */
     public static final String PATTERN_OF_TERNARY_EXPRESSION
             = "("
             + PATTERN_OF_NUMBER
@@ -40,18 +75,30 @@ public class Calculator {
             + ":"
             + PATTERN_OF_NUMBER
             + ")";
+    
+    /**
+     * Pattern represents simple binary expression with multiply
+     * and division operators.
+     */
     public static final String PATTERN_OF_HIGH_PRIORITY_BINARY_EXPRESSION
             = "("
             + PATTERN_OF_NUMBER
             + PATTERN_OF_HIGH_PRIORITY_BINARY_OPERATOR
             + PATTERN_OF_NUMBER
             + ")";
+    /**
+     * Pattern represents simple binary expression with plus and minus operators.
+     */
     public static final String PATTERN_OF_LOW_PRIORITY_BINARY_EXPRESSION
             = "("
             + PATTERN_OF_NUMBER
             + PATTERN_OF_LOW_PRIORITY_BINARY_OPERATOR
             + PATTERN_OF_NUMBER
             + ")";
+    /**
+     * Pattern represents simple expression. 
+     * The expression with only one pair of parentheses.
+     */
     public static final String PATTERN_OF_SIMPLE_PARENTHESES
             = "("
             + "\\("
@@ -62,14 +109,13 @@ public class Calculator {
             + ")";
 
     /**
-     * Calculate all available expressions in given input.
+     * Evaluate all available expressions in given input.
      *
-     *
-     * @param expression input
-     * @return string representation of evaluation
+     * @param expression complicated expression (with parentheses and all
+     * operators)
+     * @return result of evaluation
      * @throws ParseException
      */
-
     public static String evaluateExpression(String expression) throws ParseException {
         String found = getExpressionInParentheses(expression);
         //while we find simple expressions in parentheses
@@ -88,7 +134,7 @@ public class Calculator {
      * Find next simple parentheses (no parentheses inside).
      *
      * @param expression any expression
-     * @return simple expression with parentheses
+     * @return simple expression with only parentheses ( and ).
      */
     public static String getExpressionInParentheses(String expression) {
         Scanner sc = new Scanner(expression);
@@ -98,10 +144,15 @@ public class Calculator {
     }
 
     /**
-     * Calculate simple expression (without parentheses).
+     * Evaluate simple expression (without parentheses). Expression is evaluated
+     * with low priority binary operators(LPBO). Before LPBO evaluation the
+     * expression is evaluated by high priority binary operators (HPBO). Before
+     * HPBO evaluation the expression is evaluated by ternary operators. Before
+     * ternary evaluation the expression is evaluated by comparison operators.
+     * So expression is fully evaluated.
      *
      * @param simpleExpression expression without parentheses
-     * @return return string representation
+     * @return result of evaluations
      * @throws ParseException
      */
     public static String evaluateSimpleExpression(String simpleExpression)
@@ -128,6 +179,13 @@ public class Calculator {
         return simpleExpression;
     }
 
+    /**
+     * Evaluate expression as expression with ternary operators.
+     *
+     * @param simpleExpression simple expression withoout parentheses
+     * @return result of evaluations.
+     * @throws ParseException
+     */
     public static String evaluateAllTernaryInSimpleExpression(String simpleExpression)
             throws ParseException {
         simpleExpression = evaluateAllLogicInSimpleExpression(simpleExpression);
@@ -147,6 +205,18 @@ public class Calculator {
         return simpleExpression;
     }
 
+    /**
+     * Evaluate expression as expression with high priority binary operators
+     * (HPBO). Before ternary evaluation the expression is evaluated by
+     * comparison operators. Before HPBO evaluation the expression is evaluated
+     * by ternary operators.
+     *
+     * See javadoc for evaluateAllLowPriorityBinaryInSimpleExpression.
+     *
+     * @param simpleExpression simple expression without parentheses
+     * @return result of evaluations
+     * @throws ParseException
+     */
     public static String evaluateAllHighPriorityBinaryInSimpleExpression(String simpleExpression)
             throws ParseException {
         simpleExpression = evaluateAllTernaryInSimpleExpression(simpleExpression);
@@ -166,6 +236,18 @@ public class Calculator {
         return simpleExpression;
     }
 
+    /**
+     * Evaluate expression as expression with low priority binary
+     * operators(LPBO). Before evaluation the expression is evaluated by high
+     * priority binary operators (HPBO). Before HPBO evaluation the expression
+     * is evaluated by ternary operators. Before ternary evaluation the
+     * expression is evaluated by comparison operators. So expression is fully
+     * evaluated.
+     *
+     * @param simpleExpression simple expression without parentheses
+     * @return result of evaluations
+     * @throws ParseException
+     */
     public static String evaluateAllLowPriorityBinaryInSimpleExpression(String simpleExpression)
             throws ParseException {
         simpleExpression = evaluateAllHighPriorityBinaryInSimpleExpression(simpleExpression);
@@ -186,20 +268,17 @@ public class Calculator {
     }
 
     /**
-     * Calculate comparison operations 
-     * within simple comparison expression (without parentheses) 
-     * 
-     * @param expression
-     *          simple logical expression
-     * @return
-     * @throws ParseException 
+     * Calculate simple comparison expression (without parentheses).
+     *
+     * @param expression simple comparison expression like 100>5
+     * @return value of the expression
+     * @throws ParseException
      */
-    
     public static double calculateSimpleLogicalExpression(String expression)
             throws ParseException {
         Scanner sc = new Scanner(expression);
         Double leftOperand = Double.valueOf(sc.findInLine(PATTERN_OF_NUMBER));
-        String operator = sc.findInLine(PATTERN_OF_LOGICAL_OPERATOR);
+        String operator = sc.findInLine(PATTERN_OF_COMPARISON_OPERATOR);
         Double rightOperand = Double.valueOf(sc.findInLine(PATTERN_OF_NUMBER));
         sc.close();
 
@@ -221,13 +300,14 @@ public class Calculator {
                 throw new ParseException("Invalid logical expression", 0);
         }
     }
+
     /**
-     * Calculate all ternary operations 
-     * within simple expression(without parentheses).
-     * 
-     * @param expression
-     * @return
-     * @throws NumberFormatException 
+     * Calculate simple ternary expression (without parentheses).
+     *
+     * @param expression simple ternary expression like 2?1:3. The example will
+     * return 1 thus 2 is greater than 0.
+     * @return value of the ternary expression
+     * @throws NumberFormatException
      */
     public static double calculateSimpleTernaryExpression(String expression)
             throws NumberFormatException {
@@ -238,21 +318,20 @@ public class Calculator {
         sc.findInLine(":");
         Double rightOperand = Double.valueOf(sc.findInLine(PATTERN_OF_NUMBER));
         sc.close();
-        System.out.println("[" + logicOperand + "]" + "[" + leftOperand + "]" + "[" + rightOperand + "]");
+//        System.out.println("[" + logicOperand + "]" + "[" + leftOperand + "]" + "[" + rightOperand + "]");
         return (logicOperand > 0) ? leftOperand : rightOperand;
 
     }
 
     /**
-     * Calculate all binary operations with high priority (multiply and
-     * division) within simple expression (without parentheses).
+     * Calculate binary operations with high priority (multiply and division)
+     * within simple expression (without parentheses).
      *
-     * @param expression
-     * @return
+     * @param expression simple binary expression like 10.2*3 or 10.2*-3
+     * @return value of the expression
      * @throws ParseException
      * @throws ArithmeticException
      */
-
     public static double calculateSimpleHighPriorityBinaryExpression(String expression)
             throws ParseException, ArithmeticException {
         Scanner sc = new Scanner(expression);
@@ -276,14 +355,13 @@ public class Calculator {
     }
 
     /**
-     * Calculate all binary operations with low priority (plus and minus) within
+     * Calculate binary operations with low priority (plus and minus) within
      * simple expression (without parentheses).
      *
-     * @param expression
-     * @return
+     * @param expression simple binary expression like 5.5+2.3 or 5.5+-2.3
+     * @return value of expression
      * @throws ParseException
      */
-
     public static double calculateSimpleLowPriorityBinaryExpression(String expression)
             throws ParseException {
         Scanner sc = new Scanner(expression);
