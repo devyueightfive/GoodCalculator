@@ -31,59 +31,69 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButtonQuestion" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
-                          <Component id="jButtonGreaterOrEquals" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
-                          <Component id="jButtonLowerOrEquals" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButtonClearAll" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="jButtonEquals" min="-2" pref="80" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButtonClear" min="-2" pref="80" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                              <Component id="jButtonCloseParanthese" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
-                              <Component id="jButtonOpenParanthese" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jButtonGreater" min="-2" pref="80" max="-2" attributes="0"/>
-                                  <Component id="jButtonLower" min="-2" pref="80" max="-2" attributes="0"/>
-                                  <Component id="jButtonColon" min="-2" pref="80" max="-2" attributes="0"/>
+                                  <Component id="jButtonQuestion" alignment="1" min="-2" pref="60" max="-2" attributes="0"/>
+                                  <Component id="jButtonGreater" alignment="1" min="-2" pref="60" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="jButtonGreaterOrEquals" min="-2" pref="60" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jButtonClearAll" min="-2" pref="60" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="jButtonColon" min="-2" pref="60" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jButtonClear" min="-2" pref="60" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="jButtonEquals" alignment="1" min="-2" pref="60" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="jButtonLower" min="-2" pref="60" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jButtonLowerOrEquals" min="-2" pref="60" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jButtonCloseParanthese" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
+                                  <Component id="jButtonOpenParanthese" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButtonSeven" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
-                          <Component id="jButtonFour" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
-                          <Component id="jButtonOne" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
-                          <Component id="jButtonZero" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                          <Component id="jButtonSeven" alignment="1" min="-2" pref="60" max="-2" attributes="0"/>
+                          <Component id="jButtonFour" alignment="1" min="-2" pref="60" max="-2" attributes="0"/>
+                          <Component id="jButtonOne" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
+                          <Component id="jButtonZero" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButtonEight" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
-                          <Component id="jButtonFive" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
-                          <Component id="jButtonTwo" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
-                          <Component id="jButtonPoint" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                          <Component id="jButtonEight" alignment="1" min="-2" pref="60" max="-2" attributes="0"/>
+                          <Component id="jButtonFive" alignment="1" min="-2" pref="60" max="-2" attributes="0"/>
+                          <Component id="jButtonTwo" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
+                          <Component id="jButtonPoint" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButtonNine" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
-                          <Component id="jButtonSix" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
-                          <Component id="jButtonThree" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
-                          <Component id="jButtonCalculate" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                          <Component id="jButtonNine" alignment="1" min="-2" pref="60" max="-2" attributes="0"/>
+                          <Component id="jButtonSix" alignment="1" min="-2" pref="60" max="-2" attributes="0"/>
+                          <Component id="jButtonThree" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
+                          <Component id="jButtonCalculate" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButtonPlus" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
-                          <Component id="jButtonMinus" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
-                          <Component id="jButtonMultiply" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
-                          <Component id="jButtonDivide" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                          <Component id="jButtonPlus" alignment="1" min="-2" pref="60" max="-2" attributes="0"/>
+                          <Component id="jButtonMinus" alignment="1" min="-2" pref="60" max="-2" attributes="0"/>
+                          <Component id="jButtonMultiply" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
+                          <Component id="jButtonDivide" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="jTextFieldResult" alignment="1" max="32767" attributes="0"/>
@@ -103,62 +113,63 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButtonSeven" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
-                          <Component id="jButtonEight" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
-                          <Component id="jButtonNine" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
+                          <Component id="jButtonOpenParanthese" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                          <Component id="jButtonLowerOrEquals" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                          <Component id="jButtonLower" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButtonGreater" min="-2" pref="80" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButtonLower" min="-2" pref="80" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButtonColon" min="-2" pref="80" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jButtonCloseParanthese" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                          <Component id="jButtonEquals" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButtonClear" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
-                          <Component id="jButtonEquals" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
-                          <Component id="jButtonQuestion" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButtonGreaterOrEquals" min="-2" pref="80" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButtonLowerOrEquals" min="-2" pref="80" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jButtonPlus" min="-2" pref="80" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButtonMinus" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
-                          <Component id="jButtonFour" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
-                          <Component id="jButtonFive" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
-                          <Component id="jButtonSix" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
-                          <Component id="jButtonClearAll" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButtonMultiply" min="-2" pref="80" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jButtonOne" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
-                                  <Component id="jButtonTwo" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
-                                  <Component id="jButtonThree" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jButtonZero" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
-                                  <Component id="jButtonPoint" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
-                                  <Component id="jButtonCalculate" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
-                                  <Component id="jButtonDivide" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
-                              </Group>
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="jButtonSeven" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                              <Component id="jButtonEight" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                              <Component id="jButtonNine" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jButtonClear" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                              <Component id="jButtonQuestion" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                              <Component id="jButtonColon" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jButtonOpenParanthese" min="-2" pref="80" max="-2" attributes="0"/>
+                              <Component id="jButtonPlus" min="-2" pref="60" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButtonCloseParanthese" min="-2" pref="80" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jButtonMinus" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                                  <Component id="jButtonFour" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                                  <Component id="jButtonFive" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                                  <Component id="jButtonSix" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                                  <Component id="jButtonClearAll" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                                  <Component id="jButtonGreaterOrEquals" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                                  <Component id="jButtonGreater" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jButtonMultiply" min="-2" pref="60" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jButtonOne" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                                          <Component id="jButtonTwo" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                                          <Component id="jButtonThree" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jButtonZero" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                                          <Component id="jButtonPoint" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                                          <Component id="jButtonCalculate" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                                          <Component id="jButtonDivide" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
                           </Group>
                       </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -389,7 +400,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="18" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="calc"/>
+        <Property name="text" type="java.lang.String" value="="/>
         <Property name="alignmentY" type="float" value="0.0"/>
       </Properties>
       <Events>
