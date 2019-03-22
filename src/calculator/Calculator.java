@@ -17,6 +17,19 @@ import java.util.Scanner;
  *  binary operators (+,-,*,/).
  * Expression can consist of parentheses.
  * 
+ * Algorithm.
+ * The expression is divided on simple expressions by parentheses.
+ * Each step look for simple expression inside only pair of parentheses.
+ * Evaluate this simple expression. Then found parentheses replace with
+ * evaluated expression. So we evaluate all available parentheses to simple expression.
+ * On last step evaluate this simple expression.
+ * 
+ * Evaluations performed in order inside simple expression.
+ * The first evaluation is evaluation of all comparison operations.
+ * The second is evaluation of all ternary operations.
+ * The third is evaluation with multiply and division.
+ * The last evaluation in order is evaluation with plus and minus operators.
+ * 
  *
  * @author yuri
  */
