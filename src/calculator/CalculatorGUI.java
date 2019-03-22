@@ -71,6 +71,7 @@ public class CalculatorGUI extends javax.swing.JFrame {
         setAlwaysOnTop(true);
         setResizable(false);
 
+        jTextFieldInput.setEditable(false);
         jTextFieldInput.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTextFieldInput.setAutoscrolls(false);
         jTextFieldInput.addActionListener(new java.awt.event.ActionListener() {
