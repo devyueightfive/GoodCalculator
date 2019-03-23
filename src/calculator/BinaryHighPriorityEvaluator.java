@@ -44,7 +44,7 @@ public class BinaryHighPriorityEvaluator implements Evaluator {
         switch (operator) {
             case "/": {
                 if (rightOperand == 0) {
-                    throw new ArithmeticException("Division on zero");
+                    throw new ArithmeticException("Division by zero");
                 }
                 return leftOperand / rightOperand;
             }
