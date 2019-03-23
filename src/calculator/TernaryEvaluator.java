@@ -5,7 +5,7 @@
  */
 package calculator;
 
-import static calculator.Calculator.calculateSimpleHighPriorityBinaryExpression;
+import static calculator.Calculator.evaluateAllLogicInSimpleExpression;
 import java.text.ParseException;
 import java.util.Scanner;
 
@@ -13,21 +13,21 @@ import java.util.Scanner;
  *
  * @author yuri
  */
-public class HighBinaryEvaluator implements Evaluator {
+public class TernaryEvaluator implements Evaluator {
 
     @Override
     public String evaluate(String expression) throws ParseException {
+        expression = evaluateAllLogicInSimpleExpression(expression);
         while (true) {
             Scanner sc = new Scanner(expression);
-            String found = sc.findInLine(PATTERN_OF_HIGH_PRIORITY_BINARY_EXPRESSION);
+            String found = sc.findInLine(PATTERN_OF_TERNARY_EXPRESSION);
             sc.close();
             if (found == null) {
                 break;
             }
-            // for every
             expression = expression.replace(
                     found,
-                    String.valueOf(calculateSimpleHighPriorityBinaryExpression(found))
+                    String.valueOf(calculate(found))
             );
         }
 //        System.out.println("[" + simpleExpression + "]");
@@ -37,23 +37,14 @@ public class HighBinaryEvaluator implements Evaluator {
     @Override
     public double calculate(String simpleExpression) throws ParseException {
         Scanner sc = new Scanner(simpleExpression);
+        Double logicOperand = Double.valueOf(sc.findInLine(PATTERN_OF_NUMBER));
+        sc.findInLine("\\?");
         Double leftOperand = Double.valueOf(sc.findInLine(PATTERN_OF_NUMBER));
-        String operator = sc.findInLine(PATTERN_OF_HIGH_PRIORITY_BINARY_OPERATOR);
+        sc.findInLine(":");
         Double rightOperand = Double.valueOf(sc.findInLine(PATTERN_OF_NUMBER));
         sc.close();
-//        System.out.println("[" + leftOperand + "]" + "[" + operator + "]" + "[" + rightOperand + "]");
-        switch (operator) {
-            case "/": {
-                if (rightOperand == 0) {
-                    throw new ArithmeticException("Division on zero");
-                }
-                return leftOperand / rightOperand;
-            }
-            case "*":
-                return leftOperand * rightOperand;
-            default:
-                throw new ParseException("Bad parsing : " + simpleExpression, 0);
-        }
+//        System.out.println("[" + logicOperand + "]" + "[" + leftOperand + "]" + "[" + rightOperand + "]");
+        return (logicOperand > 0) ? leftOperand : rightOperand;
     }
 
 }

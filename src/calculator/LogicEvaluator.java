@@ -5,43 +5,38 @@
  */
 package calculator;
 
+import static calculator.Evaluator.PATTERN_OF_LOGICAL_EXPRESSION;
 import java.text.ParseException;
-import java.util.Objects;
 import java.util.Scanner;
 
 /**
- * Text calculator.
  *
  * @author yuri
  */
-public class Calculator implements Evaluator {
+public class LogicEvaluator implements Evaluator {
 
     @Override
     public String evaluate(String expression) throws ParseException {
-        //find simple expressions in parentheses
+
         while (true) {
             Scanner sc = new Scanner(expression);
-            String found = sc.findInLine(PATTERN_OF_SIMPLE_PARENTHESES);
+            String found = sc.findInLine(PATTERN_OF_LOGICAL_EXPRESSION);
             sc.close();
             if (found == null) {
                 break;
             }
-            //remove outside parentheses 
-            String simpleExpression = found.substring(1, found.length() - 1);
             expression = expression.replace(
                     found,
-                    evaluateSimpleExpression(simpleExpression));
+                    String.valueOf(calculate(found))
+            );
         }
-        return evaluateSimpleExpression(expression);
+//        System.out.println("[" + simpleExpression + "]");
+        return expression;
     }
 
     @Override
     public double calculate(String simpleExpression) throws ParseException {
-        return Double.valueOf(evaluate(simpleExpression));
-    }
-
-    private String evaluateSimpleExpression(String simpleExpression) throws ParseException {
-        return simpleExpression;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
