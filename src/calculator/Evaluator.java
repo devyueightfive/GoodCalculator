@@ -12,8 +12,94 @@ package calculator;
  *
  * @author yuri
  */
-public interface Evaluator {
+interface Evaluator {
+    /**
+     * Pattern represents a float number like 0.123 .
+     */
 
+    String PATTERN_OF_NUMBER
+            = "([-]?[0-9]*\\.?[0-9]+"
+            + "|"
+            + "[-]?[0-9]+\\.?[0-9]*)";
+    
+    
+    /**
+     * Pattern represents comparison operators.
+     */
+    String PATTERN_OF_LOGICAL_OPERATOR
+            = "(&|\\|)";
+    
+    /**
+     * Pattern represents comparison operators.
+     */
+    String PATTERN_OF_COMPARISON_OPERATOR
+            = "(<=|>=|==|!=|>|<)";
+    
+    /**
+     * Pattern represents two binary operators: multiply and division.
+     */
+    String PATTERN_OF_HIGH_PRIORITY_BINARY_OPERATOR
+            = "(\\*|/)";
+    
+    /**
+     * Pattern represents two binary operators: plus and minus.
+     */
+    String PATTERN_OF_LOW_PRIORITY_BINARY_OPERATOR
+            = "(\\+|-)";
+    
+    /**
+     * Pattern represents simple comparison expression like 1>2 .
+     */
+    String PATTERN_OF_LOGICAL_EXPRESSION
+            = "("
+            + PATTERN_OF_NUMBER
+            + PATTERN_OF_COMPARISON_OPERATOR
+            + PATTERN_OF_NUMBER
+            + ")";
+    /**
+     * Pattern represents simple ternary expression like 1?2:3
+     */
+    String PATTERN_OF_TERNARY_EXPRESSION
+            = "("
+            + PATTERN_OF_NUMBER
+            + "\\?"
+            + PATTERN_OF_NUMBER
+            + ":"
+            + PATTERN_OF_NUMBER
+            + ")";
+    
+    /**
+     * Pattern represents simple binary expression with multiply
+     * and division operators.
+     */
+    String PATTERN_OF_HIGH_PRIORITY_BINARY_EXPRESSION
+            = "("
+            + PATTERN_OF_NUMBER
+            + PATTERN_OF_HIGH_PRIORITY_BINARY_OPERATOR
+            + PATTERN_OF_NUMBER
+            + ")";
+    /**
+     * Pattern represents simple binary expression with plus and minus operators.
+     */
+    String PATTERN_OF_LOW_PRIORITY_BINARY_EXPRESSION
+            = "("
+            + PATTERN_OF_NUMBER
+            + PATTERN_OF_LOW_PRIORITY_BINARY_OPERATOR
+            + PATTERN_OF_NUMBER
+            + ")";
+    /**
+     * Pattern represents simple expression. 
+     * The expression with only one pair of parentheses.
+     */
+    String PATTERN_OF_SIMPLE_PARENTHESES
+            = "("
+            + "\\("
+            + "[^\\(^\\)]*"
+            + PATTERN_OF_NUMBER
+            + "[^\\(^\\)]*"
+            + "\\)"
+            + ")";
+    
     /**
      * Evaluates expression.
      *
@@ -21,5 +107,5 @@ public interface Evaluator {
      *
      * @return evaluated string
      */
-    public String evaluate(String expression);
+    String evaluate(String expression);
 }
