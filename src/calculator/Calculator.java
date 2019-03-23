@@ -6,6 +6,7 @@
 package calculator;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -40,7 +41,32 @@ public class Calculator implements Evaluator {
         return Double.valueOf(evaluate(simpleExpression));
     }
 
+    /**
+     * Evaluate simple expression with all available evaluators.
+     * <pre>Evaluators according priority =[
+     *      BinaryHighPriorityEvaluator,
+     *      BinaryLowPriorityEvaluator,
+     *      ComparisonEvaluator,
+     *      TernaryEvaluator     *      ]
+     * </pre>
+     * @param simpleExpression
+     *          expression without parentheses
+     * @return
+     *          result of evaluations
+     * @throws ParseException
+     */
     private String evaluateSimpleExpression(String simpleExpression) throws ParseException {
+        ArrayList<Evaluator> evaluators = new ArrayList();
+        // adding according priority
+        evaluators.add(new BinaryHighPriorityEvaluator());
+        evaluators.add(new BinaryLowPriorityEvaluator());
+        evaluators.add(new ComparisonEvaluator());
+        evaluators.add(new TernaryEvaluator());
+
+        for (Evaluator e : evaluators) {
+            simpleExpression = e.evaluate(simpleExpression);
+        }
+
         return simpleExpression;
     }
 
