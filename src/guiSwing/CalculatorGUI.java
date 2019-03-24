@@ -14,10 +14,7 @@ import java.text.ParseException;
  */
 public class CalculatorGUI extends javax.swing.JFrame {
 
-    StringBuilder input = new StringBuilder();
-    String result = "0";
     Calculator calculator = new Calculator();
-    String errorText = "";
 
     /**
      * Creates new form CalculatorGUI
@@ -72,7 +69,6 @@ public class CalculatorGUI extends javax.swing.JFrame {
         setAlwaysOnTop(true);
         setResizable(false);
 
-        jTextFieldInput.setEditable(false);
         jTextFieldInput.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTextFieldInput.setAutoscrolls(false);
         jTextFieldInput.addActionListener(new java.awt.event.ActionListener() {
@@ -483,14 +479,11 @@ public class CalculatorGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void appendToInput(String update) {
-        input.append(update);
-        jTextFieldInput.setText(input.toString());
+    private void appendToInput(String input) {
+        jTextFieldInput.setText(jTextFieldInput.getText() + input);
     }
 
     private void jTextFieldInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldInputActionPerformed
-        input.setLength(0);
-        input.append(jTextFieldInput.getText());
     }//GEN-LAST:event_jTextFieldInputActionPerformed
 
     private void jButtonSevenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSevenActionPerformed
@@ -546,23 +539,12 @@ public class CalculatorGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonDivideActionPerformed
 
     private void jButtonCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCalculateActionPerformed
+        String result;
+        String errorText;
         errorText = "";
         errorLabel.setText(errorText);
         try {
-            result = String.valueOf(
-                    Double.parseDouble(
-                            calculator.evaluateExpression(
-                                    jTextFieldInput.getText()
-                            )));
-        } catch (ParseException pE) {
-            result = "Invalid Expression";
-            errorText = pE.getMessage();
-        } catch (ArithmeticException aE) {
-            result = "Invalid Expression";
-            errorText = aE.getMessage();
-        } catch (NumberFormatException nfE) {
-            result = "Invalid Expression";
-            errorText = nfE.getMessage();
+            result = calculator.evaluate(jTextFieldInput.getText());
         } catch (Exception e) {
             result = "Invalid Expression";
             errorText = e.getMessage();
@@ -585,9 +567,9 @@ public class CalculatorGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCloseParantheseActionPerformed
 
     private void jButtonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearActionPerformed
+        String input = jTextFieldInput.getText();
         if (input.length() > 0) {
-            input.deleteCharAt(input.length() - 1);
-            jTextFieldInput.setText(input.toString());
+            jTextFieldInput.setText(input.substring(0, input.length() - 1));
         }
     }//GEN-LAST:event_jButtonClearActionPerformed
 
@@ -600,8 +582,7 @@ public class CalculatorGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldResultActionPerformed
 
     private void jButtonClearAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearAllActionPerformed
-        input.setLength(0);
-        jTextFieldInput.setText(input.toString());
+        jTextFieldInput.setText("");
     }//GEN-LAST:event_jButtonClearAllActionPerformed
 
     private void jButtonGreaterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGreaterActionPerformed

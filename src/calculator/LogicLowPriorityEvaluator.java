@@ -5,10 +5,10 @@
  */
 package calculator;
 
-import static calculator.Evaluator.PATTERN_OF_NUMBER;
 import java.text.ParseException;
 import java.util.Objects;
 import java.util.Scanner;
+import static calculator.Evaluator.PATTERN_OF_FLOAT_NUMBER;
 
 /**
  *
@@ -23,9 +23,9 @@ public class LogicLowPriorityEvaluator extends OperationEvaluator {
     @Override
     public double calculate(String simpleExpression) throws ParseException {
         Scanner sc = new Scanner(simpleExpression);
-        Double leftOperand = Double.valueOf(sc.findInLine(PATTERN_OF_NUMBER));
-        String operator = sc.findInLine(PATTERN_OF_LOGICAL_LOW_PRIORITY_OPERATOR);
-        Double rightOperand = Double.valueOf(sc.findInLine(PATTERN_OF_NUMBER));
+        Double leftOperand = Double.valueOf(sc.findInLine(PATTERN_OF_FLOAT_NUMBER));
+        String operator = sc.findInLine(PATTERN_OF_LOW_PRIORITY_LOGICAL_OPERATOR);
+        Double rightOperand = Double.valueOf(sc.findInLine(PATTERN_OF_FLOAT_NUMBER));
         sc.close();
 
 //        System.out.println("[" + leftOperand + "]" + "[" + operator + "]" + "[" + rightOperand + "]");

@@ -9,7 +9,8 @@ import java.text.ParseException;
 import java.util.Scanner;
 
 /**
- *
+ *Abstract evaluator for operation.
+ *Evaluator with predefined <b>evaluate</b> function.
  * @author yuri
  */
 abstract class OperationEvaluator implements Evaluator {

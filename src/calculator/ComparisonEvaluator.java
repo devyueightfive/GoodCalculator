@@ -13,19 +13,18 @@ import java.util.Scanner;
  *
  * @author yuri
  */
-public class ComparisonEvaluator implements Evaluator {
+public class ComparisonEvaluator extends OperationEvaluator{
 
-    @Override
-    public String evaluate(String expression) throws ParseException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    ComparisonEvaluator(){
+        this.pattern = PATTERN_OF_COMPARISON_EXPRESSION;
     }
 
     @Override
     public double calculate(String simpleExpression) throws ParseException {
         Scanner sc = new Scanner(simpleExpression);
-        Double leftOperand = Double.valueOf(sc.findInLine(PATTERN_OF_NUMBER));
+        Double leftOperand = Double.valueOf(sc.findInLine(PATTERN_OF_FLOAT_NUMBER));
         String operator = sc.findInLine(PATTERN_OF_COMPARISON_OPERATOR);
-        Double rightOperand = Double.valueOf(sc.findInLine(PATTERN_OF_NUMBER));
+        Double rightOperand = Double.valueOf(sc.findInLine(PATTERN_OF_FLOAT_NUMBER));
         sc.close();
 
 //        System.out.println("[" + leftOperand + "]" + "[" + operator + "]" + "[" + rightOperand + "]");

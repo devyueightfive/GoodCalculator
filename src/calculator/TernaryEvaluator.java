@@ -5,7 +5,6 @@
  */
 package calculator;
 
-import static calculator.Calculator.evaluateAllLogicInSimpleExpression;
 import java.text.ParseException;
 import java.util.Scanner;
 
@@ -13,35 +12,20 @@ import java.util.Scanner;
  *
  * @author yuri
  */
-public class TernaryEvaluator implements Evaluator {
+public class TernaryEvaluator extends OperationEvaluator {
 
-    @Override
-    public String evaluate(String expression) throws ParseException {
-        expression = evaluateAllLogicInSimpleExpression(expression);
-        while (true) {
-            Scanner sc = new Scanner(expression);
-            String found = sc.findInLine(PATTERN_OF_TERNARY_EXPRESSION);
-            sc.close();
-            if (found == null) {
-                break;
-            }
-            expression = expression.replace(
-                    found,
-                    String.valueOf(calculate(found))
-            );
-        }
-//        System.out.println("[" + simpleExpression + "]");
-        return expression;
+    public TernaryEvaluator() {
+        pattern = PATTERN_OF_TERNARY_EXPRESSION;
     }
 
     @Override
     public double calculate(String simpleExpression) throws ParseException {
         Scanner sc = new Scanner(simpleExpression);
-        Double logicOperand = Double.valueOf(sc.findInLine(PATTERN_OF_NUMBER));
+        Double logicOperand = Double.valueOf(sc.findInLine(PATTERN_OF_FLOAT_NUMBER));
         sc.findInLine("\\?");
-        Double leftOperand = Double.valueOf(sc.findInLine(PATTERN_OF_NUMBER));
+        Double leftOperand = Double.valueOf(sc.findInLine(PATTERN_OF_FLOAT_NUMBER));
         sc.findInLine(":");
-        Double rightOperand = Double.valueOf(sc.findInLine(PATTERN_OF_NUMBER));
+        Double rightOperand = Double.valueOf(sc.findInLine(PATTERN_OF_FLOAT_NUMBER));
         sc.close();
 //        System.out.println("[" + logicOperand + "]" + "[" + leftOperand + "]" + "[" + rightOperand + "]");
         return (logicOperand > 0) ? leftOperand : rightOperand;

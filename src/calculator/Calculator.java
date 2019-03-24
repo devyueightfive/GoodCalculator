@@ -49,10 +49,9 @@ public class Calculator implements Evaluator {
      *      ComparisonEvaluator,
      *      TernaryEvaluator     *      ]
      * </pre>
-     * @param simpleExpression
-     *          expression without parentheses
-     * @return
-     *          result of evaluations
+     *
+     * @param simpleExpression expression without parentheses
+     * @return result of evaluations
      * @throws ParseException
      */
     private String evaluateSimpleExpression(String simpleExpression) throws ParseException {
@@ -61,6 +60,8 @@ public class Calculator implements Evaluator {
         evaluators.add(new BinaryHighPriorityEvaluator());
         evaluators.add(new BinaryLowPriorityEvaluator());
         evaluators.add(new ComparisonEvaluator());
+        evaluators.add(new LogicHighPriorityEvaluator());
+        evaluators.add(new LogicLowPriorityEvaluator());
         evaluators.add(new TernaryEvaluator());
 
         for (Evaluator e : evaluators) {

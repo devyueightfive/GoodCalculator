@@ -12,33 +12,18 @@ import java.util.Scanner;
  *
  * @author yuri
  */
-public class BinaryHighPriorityEvaluator implements Evaluator {
+public class BinaryHighPriorityEvaluator extends OperationEvaluator {
 
-    @Override
-    public String evaluate(String expression) throws ParseException {
-        while (true) {
-            Scanner sc = new Scanner(expression);
-            String found = sc.findInLine(PATTERN_OF_HIGH_PRIORITY_BINARY_EXPRESSION);
-            sc.close();
-            if (found == null) {
-                break;
-            }
-            // for every
-            expression = expression.replace(
-                    found,
-                    String.valueOf(calculate(found))
-            );
-        }
-//        System.out.println("[" + simpleExpression + "]");
-        return expression;
+    BinaryHighPriorityEvaluator() {
+        pattern = PATTERN_OF_HIGH_PRIORITY_BINARY_EXPRESSION;
     }
 
     @Override
     public double calculate(String simpleExpression) throws ParseException {
         Scanner sc = new Scanner(simpleExpression);
-        Double leftOperand = Double.valueOf(sc.findInLine(PATTERN_OF_NUMBER));
+        Double leftOperand = Double.valueOf(sc.findInLine(PATTERN_OF_FLOAT_NUMBER));
         String operator = sc.findInLine(PATTERN_OF_HIGH_PRIORITY_BINARY_OPERATOR);
-        Double rightOperand = Double.valueOf(sc.findInLine(PATTERN_OF_NUMBER));
+        Double rightOperand = Double.valueOf(sc.findInLine(PATTERN_OF_FLOAT_NUMBER));
         sc.close();
 //        System.out.println("[" + leftOperand + "]" + "[" + operator + "]" + "[" + rightOperand + "]");
         switch (operator) {

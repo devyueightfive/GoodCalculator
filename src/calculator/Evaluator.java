@@ -17,22 +17,27 @@ interface Evaluator {
     /**
      * Pattern represents a float number like 0.123 .
      */
-    String PATTERN_OF_NUMBER
+    String PATTERN_OF_FLOAT_NUMBER
             = "([-]?[0-9]*\\.?[0-9]+"
             + "|"
             + "[-]?[0-9]+\\.?[0-9]*)";
 
     /**
-     * Pattern represents comparison operators.
+     * Pattern represents logic high priority operator.
      */
-    String PATTERN_OF_LOGICAL_OPERATOR
-            = "(&|\\|)";
+    String PATTERN_OF_HIGH_PRIORITY_LOGICAL_OPERATOR
+            = "(&)";
+    /**
+     * Pattern represents logic low priority operator.
+     */
+    String PATTERN_OF_LOW_PRIORITY_LOGICAL_OPERATOR
+            = "(\\|)";
 
     /**
      * Pattern represents comparison operators.
      */
     String PATTERN_OF_COMPARISON_OPERATOR
-            = "(<=|>=|==|!=|>|<)";
+            = "(<=|>=|>|<|==|!=)";
 
     /**
      * Pattern represents two binary operators: multiply and division.
@@ -47,24 +52,42 @@ interface Evaluator {
             = "(\\+|-)";
 
     /**
-     * Pattern represents simple comparison expression like 1>2 .
+     * Pattern represents simple comparison expression.
      */
-    String PATTERN_OF_LOGICAL_EXPRESSION
+    String PATTERN_OF_COMPARISON_EXPRESSION
             = "("
-            + PATTERN_OF_NUMBER
+            + PATTERN_OF_FLOAT_NUMBER
             + PATTERN_OF_COMPARISON_OPERATOR
-            + PATTERN_OF_NUMBER
+            + PATTERN_OF_FLOAT_NUMBER
             + ")";
     /**
-     * Pattern represents simple ternary expression like 1?2:3
+     * Pattern represents simple expression with low logical operator.
+     */
+    String PATTERN_OF_LOW_PRIORITY_LOGICAL_EXPRESSION
+            = "("
+            + PATTERN_OF_FLOAT_NUMBER
+            + PATTERN_OF_LOW_PRIORITY_LOGICAL_OPERATOR
+            + PATTERN_OF_FLOAT_NUMBER
+            + ")";
+    /**
+     * Pattern represents simple expression with low logical operator.
+     */
+    String PATTERN_OF_HIGH_PRIORITY_LOGICAL_EXPRESSION
+            = "("
+            + PATTERN_OF_FLOAT_NUMBER
+            + PATTERN_OF_HIGH_PRIORITY_LOGICAL_OPERATOR
+            + PATTERN_OF_FLOAT_NUMBER
+            + ")";
+    /**
+     * Pattern represents simple ternary expression.
      */
     String PATTERN_OF_TERNARY_EXPRESSION
             = "("
-            + PATTERN_OF_NUMBER
+            + PATTERN_OF_FLOAT_NUMBER
             + "\\?"
-            + PATTERN_OF_NUMBER
+            + PATTERN_OF_FLOAT_NUMBER
             + ":"
-            + PATTERN_OF_NUMBER
+            + PATTERN_OF_FLOAT_NUMBER
             + ")";
 
     /**
@@ -73,9 +96,9 @@ interface Evaluator {
      */
     String PATTERN_OF_HIGH_PRIORITY_BINARY_EXPRESSION
             = "("
-            + PATTERN_OF_NUMBER
+            + PATTERN_OF_FLOAT_NUMBER
             + PATTERN_OF_HIGH_PRIORITY_BINARY_OPERATOR
-            + PATTERN_OF_NUMBER
+            + PATTERN_OF_FLOAT_NUMBER
             + ")";
     /**
      * Pattern represents simple binary expression with plus and minus
@@ -83,9 +106,9 @@ interface Evaluator {
      */
     String PATTERN_OF_LOW_PRIORITY_BINARY_EXPRESSION
             = "("
-            + PATTERN_OF_NUMBER
+            + PATTERN_OF_FLOAT_NUMBER
             + PATTERN_OF_LOW_PRIORITY_BINARY_OPERATOR
-            + PATTERN_OF_NUMBER
+            + PATTERN_OF_FLOAT_NUMBER
             + ")";
     /**
      * Pattern represents simple expression. The expression with only one pair
@@ -95,7 +118,7 @@ interface Evaluator {
             = "("
             + "\\("
             + "[^\\(^\\)]*"
-            + PATTERN_OF_NUMBER
+            + PATTERN_OF_FLOAT_NUMBER
             + "[^\\(^\\)]*"
             + "\\)"
             + ")";
