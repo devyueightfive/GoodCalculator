@@ -544,13 +544,13 @@ public class CalculatorGUI extends javax.swing.JFrame {
         errorText = "";
         errorLabel.setText(errorText);
         try {
-            result = calculator.evaluate(jTextFieldInput.getText());
+            result = String.valueOf(calculator.calculate(jTextFieldInput.getText()));
         } catch (Exception e) {
             result = "Invalid Expression";
             errorText = e.getMessage();
         }
-
         jTextFieldResult.setText(result);
+
         errorLabel.setText(errorText);
     }//GEN-LAST:event_jButtonCalculateActionPerformed
 
