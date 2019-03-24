@@ -8,8 +8,7 @@ package calculator;
 import java.text.ParseException;
 
 /**
- * To evaluate strings by operations. Implemented classes are operations divided
- * by priority.
+ * To evaluate strings by operations.
  *
  * @author yuri
  */
