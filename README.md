@@ -1,2 +1,8 @@
 # GoodCalculator
-Text calculator. Available operations: comparison (&lt;=,>=,!=,==,&lt;,>), ternary(logic?left:right), binary(*,/,-,+), unary(-).
+Text calculator. 
+Available operations:
+  unary(-),
+  binary(*,/,-,+),
+  comparison (&lt;=,>=,!=,==,&lt;,>),
+  logical (&,|),
+  ternary(logic?left:right), 
